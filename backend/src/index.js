@@ -1,7 +1,6 @@
 import { app } from './app.js'
 
 import { sequelize } from './database/connection.js'
-// import './models/imports.models.js'
 
 try {
   await sequelize.authenticate()
