@@ -23,7 +23,6 @@ export const validateRolToken = (type = []) => (req, res, next) => {
   const headerToken = req.get('authorization')
   const token = headerToken.slice(7)
   const payLoad = jwt.verify(token, process.env.SECRET_KEY || 'mi_llave_secreta_super_segura')
-  console.log(payLoad)
   if (type.includes(payLoad.type)) {
     next()
   } else {

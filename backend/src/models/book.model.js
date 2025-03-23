@@ -7,6 +7,10 @@ export const Book = sequelize.define('Book', {
     type: DataTypes.STRING,
     primaryKey: true
   },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   editorial: {
     type: DataTypes.STRING,
     allowNull: false

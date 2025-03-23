@@ -17,7 +17,7 @@ export class UserController {
 
   async findAll (req, res) {
     try {
-      const users = await User.findAll()
+      const users = await User.findAll({ attributes: { exclude: ['password'] } })
       return res.status(200).json(users)
     } catch (error) {
       return res.status(500).json({ error: error.message })
@@ -27,7 +27,7 @@ export class UserController {
   async findOne (req, res) {
     try {
       const { userName } = req.params
-      const user = await User.findOne({ where: { userName } })
+      const user = await User.findOne({ where: { userName }, attributes: { exclude: ['password'] } })
       if (!user) {
         return res.status(404).json({ error: 'User not found' })
       }
@@ -45,7 +45,8 @@ export class UserController {
       if (!user) {
         return res.status(404).json({ error: 'User not found' })
       }
-      user.password = password
+      const cryptedPassword = await bcrypt.hash(password, 12)
+      user.password = cryptedPassword
       user.type = type
       await user.save()
       return res.status(200).json(user)
