@@ -16,3 +16,20 @@ input[type=number] {
     appearance: textfield;
     margin: 0;
 }
+
+nav {
+    background: rgb(59, 153, 190);
+    background: linear-gradient(164deg, rgba(59, 153, 190, 1) 0%, rgba(64, 98, 170, 1) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #efefef;
+}

@@ -1,1 +1,67 @@
-<p>catalogo works!</p>
+<body>
+    <nav>
+        <h1>Digital Library</h1>
+        <ul class="nav-links">
+            <li><a href="">Catalogo</a></li>
+            <li><a href="">Usuarios</a></li>
+        </ul>
+
+        <a href="">cerrar sesion</a>
+    </nav>
+    <div class="search-container">
+        <select id="search-type">
+            <option value="libro">Libro</option>
+            <option value="autor">Autor</option>
+        </select>
+        <input type="text" id="search-bar" placeholder="Buscar...">
+        <button class="btn search-btn">Buscar</button>
+        <button class="btn add-book-btn" (click)="showBookForm=true">Agregar Libro</button>
+        <button class="btn add-author-btn">Agregar Autor</button>
+    </div>
+
+    <div class="card-container">
+        <div class="card">
+            <img src="libros1.png" alt="Libro">
+            <div class="card-content">
+                <p><strong>ISBN:</strong> 978-3-16-148410-0</p>
+                <p><strong>Título:</strong> El Gran Libro</p>
+                <p><strong>Editorial:</strong> Editorial Ejemplo</p>
+                <p><strong>Género:</strong> Ficción</p>
+                <p><strong>Año:</strong> 2022</p>
+                <p><strong>Autor:</strong> Juan Pérez</p>
+                <button class="edit-btn" (click)="showBookForm=true">Editar</button>
+            </div>
+        </div>
+    </div>
+
+    @if (showBookForm) {
+    <div class="overlay" id="overlay">
+        <div class="form-container">
+            <h2>Agregar Libro</h2>
+            <form>
+                <label for="isbn">ISBN:</label>
+                <input type="text" id="isbn" placeholder="Ingrese ISBN">
+
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" placeholder="Ingrese título">
+
+                <label for="editorial">Editorial:</label>
+                <input type="text" id="editorial" placeholder="Ingrese editorial">
+
+                <label for="genero">Género:</label>
+                <input type="text" id="genero" placeholder="Ingrese género">
+
+                <label for="anio">Año:</label>
+                <input type="number" id="anio" placeholder="Ingrese año">
+
+                <label for="autor">Autor:</label>
+                <input type="text" id="autor" placeholder="Ingrese autor">
+
+                <button type="submit" class="submit-btn">Guardar</button>
+                <button type="button" class="close-btn" (click)="showBookForm=false">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    }
+
+</body>
