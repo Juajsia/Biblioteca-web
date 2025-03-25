@@ -16,16 +16,17 @@
     </div>
 
     <div class="card-container">
+        @for (item of users; track item.id ; let i=$index) {
         <div class="card">
             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Usuario">
             <div class="card-content">
-                <p><strong>ID:</strong> 12345</p>
-                <p><strong>Nombre de Usuario:</strong> johndoe</p>
-                <p><strong>Tipo:</strong> Administrador</p>
+                <p><strong>ID:</strong> {{item.id}}</p>
+                <p><strong>Nombre de Usuario:</strong> {{item.userName}}</p>
+                <p><strong>Tipo:</strong> {{item.type}}</p>
                 <button class="edit-btn" (click)="showUserForm=true">Editar</button>
             </div>
         </div>
-
+        }
         @if (showUserForm) {
         <div class="overlay" id="overlay">
             <div class="form-container">
