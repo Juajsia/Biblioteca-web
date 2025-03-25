@@ -2,23 +2,27 @@
     <nav>
         <h1>Digital Library</h1>
         <ul class="nav-links">
-            <li><a href="">Catalogo</a></li>
-            <li><a href="">Usuarios</a></li>
+            <li><a [routerLink]="['/catalogo']" routerLinkActive="active-link">Catalogo</a></li>
+            <li><a [routerLink]="['/usuario']" routerLinkActive="active-link">Usuarios</a></li>
         </ul>
 
         <a href="">cerrar sesion</a>
     </nav>
     <div class="search-container">
-        <select id="search-type">
+        <select id="search-type" [(ngModel)]="selectedOption">
             <option value="libro">Libro</option>
             <option value="autor">Autor</option>
         </select>
         <input type="text" id="search-bar" placeholder="Buscar...">
         <button class="btn search-btn">Buscar</button>
+        @if (selectedOption==='libro') {
         <button class="btn add-book-btn" (click)="showBookForm=true">Agregar Libro</button>
-        <button class="btn add-author-btn">Agregar Autor</button>
+        }@else {
+        <button class="btn add-author-btn" (click)="showAuthorForm=true">Agregar Autor</button>
+        }
     </div>
 
+    @if (selectedOption==='libro') {
     <div class="card-container">
         <div class="card">
             <img src="libros1.png" alt="Libro">
@@ -33,7 +37,7 @@
             </div>
         </div>
     </div>
-
+    }
     @if (showBookForm) {
     <div class="overlay" id="overlay">
         <div class="form-container">
@@ -60,6 +64,41 @@
                 <button type="submit" class="submit-btn">Guardar</button>
                 <button type="button" class="close-btn" (click)="showBookForm=false">Cancelar</button>
             </form>
+        </div>
+    </div>
+    }
+
+    @if (showAuthorForm) {
+    <div class="overlay" id="overlay">
+        <div class="form-container">
+            <h2>Agregar Autor</h2>
+            <form>
+                <label for="cedula">Cédula:</label>
+                <input type="text" id="cedula" placeholder="Ingrese cédula">
+
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" placeholder="Ingrese nombre completo">
+
+                <label for="nacionalidad">Nacionalidad:</label>
+                <input type="text" id="nacionalidad" placeholder="Ingrese nacionalidad">
+
+                <button type="submit" class="submit-btn">Guardar</button>
+                <button type="button" class="close-btn" (click)="showAuthorForm=false">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    }
+
+    @if (selectedOption==='autor') {
+    <div class="card-container">
+        <div class="card">
+            <img src="user.png" alt="Autor">
+            <div class="card-content">
+                <p><strong>Cédula:</strong> 12345678</p>
+                <p><strong>Nombre:</strong> Gabriel García Márquez</p>
+                <p><strong>Nacionalidad:</strong> Colombiana</p>
+                <button class="edit-btn" (click)="showAuthorForm=true">Editar</button>
+            </div>
         </div>
     </div>
     }
