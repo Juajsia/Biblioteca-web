@@ -8,5 +8,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-
+  showUserForm = false
 }
