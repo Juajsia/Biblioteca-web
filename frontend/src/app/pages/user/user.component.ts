@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -8,5 +9,22 @@ import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+  showUserForm = false
 
+  users: any = []
+
+  userType = localStorage.getItem('type')
+
+  constructor(private _userService: UserService) {
+    this.getUsers()
+  }
+  getUsers() {
+    this._userService.findAll().subscribe(data => { this.users = data })
+  }
+
+  logOut() {
+    localStorage.clear()
+  }
 }
+
+
