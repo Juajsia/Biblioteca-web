@@ -184,8 +184,3 @@ input {
 .close-btn:hover {
     background: #c82333;
 }
-
-.active-link {
-    font-weight: bold;
-    color: red;
-}

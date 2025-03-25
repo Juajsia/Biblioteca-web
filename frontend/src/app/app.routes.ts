@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
-import { loginGuard } from './guards/login.guard';
+import { adminGuard, inactiveSession, loginGuard } from './guards/login.guard';
 import { UserComponent } from './pages/user/user.component';
 
 export const routes: Routes = [{
     path: '',
     component: HomeComponent,
-    title: 'Home'
+    title: 'Home',
+    canActivate: [inactiveSession]
 },
 {
     path: 'catalogo',
@@ -18,7 +19,7 @@ export const routes: Routes = [{
     path: 'usuario',
     component: UserComponent,
     title: 'Usuario',
-    canActivate: [loginGuard]
+    canActivate: [loginGuard, adminGuard]
 }, {
     path: '**',
     redirectTo: 'catalogo',

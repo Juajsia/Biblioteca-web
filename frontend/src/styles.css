@@ -17,6 +17,13 @@ input[type=number] {
     margin: 0;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #efefef;
+}
+
 nav {
     background: rgb(59, 153, 190);
     background: linear-gradient(164deg, rgba(59, 153, 190, 1) 0%, rgba(64, 98, 170, 1) 100%);
@@ -60,10 +67,6 @@ a:hover {
     border-radius: 5px;
 }
 
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #efefef;
+.active-link {
+    text-decoration: underline !important;
 }

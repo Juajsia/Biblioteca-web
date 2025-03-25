@@ -1,12 +1,14 @@
 <body>
     <nav>
-        <h1>Digital Library</h1>
+        <h1>{{'Digital Library - ' + userType}}</h1>
         <ul class="nav-links">
             <li><a [routerLink]="['/catalogo']" routerLinkActive="active-link">Catalogo</a></li>
+            @if (userType === 'Administrador') {
             <li><a [routerLink]="['/usuario']" routerLinkActive="active-link">Usuarios</a></li>
+            }
         </ul>
 
-        <a href="">cerrar sesion</a>
+        <a [routerLink]="['']" (click)="logOut()">cerrar sesion</a>
     </nav>
     <div class="search-container">
         <select id="search-type" [(ngModel)]="selectedOption">
@@ -15,10 +17,14 @@
         </select>
         <input type="text" id="search-bar" placeholder="Buscar...">
         <button class="btn search-btn">Buscar</button>
+
+        @if (userType === 'Administrador') {
+
         @if (selectedOption==='libro') {
         <button class="btn add-book-btn" (click)="showBookForm=true">Agregar Libro</button>
         }@else {
         <button class="btn add-author-btn" (click)="showAuthorForm=true">Agregar Autor</button>
+        }
         }
     </div>
 
@@ -33,7 +39,9 @@
                 <p><strong>Género:</strong> Ficción</p>
                 <p><strong>Año:</strong> 2022</p>
                 <p><strong>Autor:</strong> Juan Pérez</p>
+                @if (userType === 'Administrador') {
                 <button class="edit-btn" (click)="showBookForm=true">Editar</button>
+                }
             </div>
         </div>
     </div>
@@ -97,7 +105,9 @@
                 <p><strong>Cédula:</strong> 12345678</p>
                 <p><strong>Nombre:</strong> Gabriel García Márquez</p>
                 <p><strong>Nacionalidad:</strong> Colombiana</p>
+                @if (userType === 'Administrador') {
                 <button class="edit-btn" (click)="showAuthorForm=true">Editar</button>
+                }
             </div>
         </div>
     </div>

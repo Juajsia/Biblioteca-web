@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { jwtDecode } from "jwt-decode";
+
 
 @Component({
   selector: 'app-home',
@@ -22,6 +24,9 @@ export class HomeComponent {
       this._userService.login({ userName: this.username, password: this.password }).subscribe({
         next: (data) => {
           localStorage.setItem('token', data.token)
+          const decoded: any = jwtDecode(data.token)
+          localStorage.setItem('userName', decoded.userName)
+          localStorage.setItem('type', decoded.type)
           this.router.navigate(['/catalogo'])
         }, error: (e: HttpErrorResponse) => {
           if (e.status != 500) {
