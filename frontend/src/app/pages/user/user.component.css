@@ -71,6 +71,7 @@ input {
 .card img {
     margin: 10px;
     height: 150px;
+    border-radius: 50%;
 }
 
 .card-content {
@@ -168,6 +169,7 @@ input {
     color: white;
 }
 
-.close-btn:hover {
+.close-btn:hover,
+.delete-btn:hover {
     background: #c82333;
 }

@@ -18,34 +18,46 @@
     <div class="card-container">
         @for (item of users; track item.id ; let i=$index) {
         <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Usuario">
+            <img src="user-icon.png" alt="Usuario">
             <div class="card-content">
                 <p><strong>ID:</strong> {{item.id}}</p>
-                <p><strong>Nombre de Usuario:</strong> {{item.userName}}</p>
+                <p><strong>Usuario:</strong> {{item.userName}}</p>
                 <p><strong>Tipo:</strong> {{item.type}}</p>
-                <button class="edit-btn" (click)="showUserForm=true">Editar</button>
+                <button class="edit-btn" (click)="update(item)">Editar</button>
             </div>
         </div>
         }
         @if (showUserForm) {
         <div class="overlay" id="overlay">
             <div class="form-container">
+                @if (editUser) {
+                <h2>Editar Usuario</h2>
+                } @else {
                 <h2>Agregar Usuario</h2>
-                <form>
+                }
+                <form [formGroup]="userForm">
                     <label for="nombre">Nombre de Usuario:</label>
-                    <input type="text" id="nombre" placeholder="Ingrese nombre de usuario">
+                    <input type="text" id="nombre" formControlName="userName" placeholder="Ingrese nombre de usuario">
+                    @if(editUser) {
 
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" placeholder="Ingrese contraseña">
+                    <label for="password">Nueva contraseña:</label>
+                    } @else {
+                    <label for="password">Contraseña:</label>
+                    }
+                    <input type="password" id="password" formControlName="password" placeholder="Ingrese contraseña">
 
                     <label for="tipo">Tipo:</label>
-                    <select id="tipo">
-                        <option value="admin">Administrador</option>
-                        <option value="usuario">Usuario</option>
+                    <select id="tipo" formControlName="type">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Empleado">Empleado</option>
                     </select>
-
-                    <button type="submit" class="submit-btn">Guardar</button>
-                    <button type="button" class="close-btn" (click)="showUserForm=false">Cancelar</button>
+                    @if (editUser) {
+                    <button type="submit" class="submit-btn delete-btn" (click)="delete()">Eliminar</button>
+                    <button type="submit" class="submit-btn" (click)="saveData()">Guardar</button>
+                    } @else {
+                    <button type="submit" class="submit-btn" (click)="create()">Crear</button>
+                    }
+                    <button type="button" class="close-btn" (click)="cancel()">Cancelar</button>
                 </form>
             </div>
         </div>

@@ -39,15 +39,16 @@ export class UserController {
 
   async update (req, res) {
     try {
-      const { userName } = req.params
-      const { password, type } = req.body
-      const user = await User.findOne({ where: { userName } })
+      const { id } = req.params
+      const { userName, password, type } = req.body
+      const user = await User.findByPk(id)
       if (!user) {
         return res.status(404).json({ error: 'User not found' })
       }
       const cryptedPassword = await bcrypt.hash(password, 12)
       user.password = cryptedPassword
       user.type = type
+      user.userName = userName
       await user.save()
       return res.status(200).json(user)
     } catch (error) {
@@ -57,8 +58,8 @@ export class UserController {
 
   async remove (req, res) {
     try {
-      const { userName } = req.params
-      const user = await User.findOne({ where: { userName } })
+      const { id } = req.params
+      const user = await User.findOne({ where: { id } })
       if (!user) {
         return res.status(404).json({ error: 'User not found' })
       }

@@ -20,11 +20,11 @@ export class UserService {
   create(user: any): Observable<any> {
     return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}/`, user)
   }
-  update(user: any, userName: string): Observable<any> {
-    return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}/${userName}`, user)
+  update(user: any, id: string): Observable<any> {
+    return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}/${id}`, user)
   }
-  remove(user: any, userName: string): Observable<any> {
-    return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}/${userName}`, user)
+  remove(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.myAppUrl}${this.myApiUrl}/${id}`)
   }
   findAll(): Observable<any> {
     return this.http.get<any>(`${this.myAppUrl}${this.myApiUrl}/`)
