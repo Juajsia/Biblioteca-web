@@ -16,7 +16,7 @@
             <option value="autor">Autor</option>
         </select>
         <input type="text" id="search-bar" placeholder="Buscar...">
-        <button class="btn search-btn">Buscar</button>
+        <button class="btn search-btn" (click)="search()">Buscar</button>
 
         @if (userType === 'Administrador') {
 
@@ -30,20 +30,22 @@
 
     @if (selectedOption==='libro') {
     <div class="card-container">
+        @for (item of books; track item.ISBN; let i=$index) {
         <div class="card">
-            <img src="libros1.png" alt="Libro">
+            <img src="cien.jpeg" alt="Libro">
             <div class="card-content">
-                <p><strong>ISBN:</strong> 978-3-16-148410-0</p>
-                <p><strong>Título:</strong> El Gran Libro</p>
-                <p><strong>Editorial:</strong> Editorial Ejemplo</p>
-                <p><strong>Género:</strong> Ficción</p>
-                <p><strong>Año:</strong> 2022</p>
-                <p><strong>Autor:</strong> Juan Pérez</p>
+                <p><strong>ISBN:</strong> {{item.ISBN}}</p>
+                <p><strong>Título:</strong> {{item.title}}</p>
+                <p><strong>Editorial:</strong> {{item.editorial}}</p>
+                <p><strong>Género:</strong> {{item.genre}}</p>
+                <p><strong>Año:</strong> {{item.year}}</p>
+                <p><strong>Autor:</strong> {{item.Author.fullName}}</p>
                 @if (userType === 'Administrador') {
                 <button class="edit-btn" (click)="showBookForm=true">Editar</button>
                 }
             </div>
         </div>
+        }
     </div>
     }
     @if (showBookForm) {
@@ -99,17 +101,19 @@
 
     @if (selectedOption==='autor') {
     <div class="card-container">
+        @for (item of authors; track item.id; let i=$index) {
         <div class="card">
-            <img src="user.png" alt="Autor">
+            <img src="gabrielg.jpg" alt="Autor">
             <div class="card-content">
-                <p><strong>Cédula:</strong> 12345678</p>
-                <p><strong>Nombre:</strong> Gabriel García Márquez</p>
-                <p><strong>Nacionalidad:</strong> Colombiana</p>
+                <p><strong>Cédula: </strong>{{item.cedula}}</p>
+                <p><strong>Nombre: </strong>{{item.fullName}} </p>
+                <p><strong>Nacionalidad: </strong> {{item.nationality}}</p>
                 @if (userType === 'Administrador') {
                 <button class="edit-btn" (click)="showAuthorForm=true">Editar</button>
                 }
             </div>
         </div>
+        }
     </div>
     }
 
