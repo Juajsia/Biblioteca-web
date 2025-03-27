@@ -19,8 +19,8 @@ export class BookService {
   update(book: any, ISBN: string): Observable<any> {
     return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}/${ISBN}`, book)
   }
-  remove(book: any, ISBN: string): Observable<any> {
-    return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}/${ISBN}`, book)
+  remove(ISBN: string): Observable<any> {
+    return this.http.delete<any>(`${this.myAppUrl}${this.myApiUrl}/${ISBN}`)
   }
   findAll(): Observable<any> {
     return this.http.get<any>(`${this.myAppUrl}${this.myApiUrl}/`)

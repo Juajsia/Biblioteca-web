@@ -55,9 +55,15 @@ export class AuthorController {
   async remove (req, res) {
     try {
       const { cedula } = req.params
-      const author = await Author.findOne({ where: { cedula } })
+      const author = await Author.findOne({
+        where: { cedula },
+        include: { model: Book, attributes: ['ISBN'] }
+      })
       if (!author) {
         return res.status(404).json({ error: 'Author not found' })
+      }
+      if (author.Books.length) {
+        return res.status(400).json({ error: 'El Autor tiene libros registrados' })
       }
       await author.destroy()
       res.status(200).json({ message: 'Author deleted' })

@@ -20,8 +20,8 @@ export class AuthorService {
   update(author: any, cedula: string): Observable<any> {
     return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}/${cedula}`, author)
   }
-  remove(author: any, cedula: string): Observable<any> {
-    return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}/${cedula}`, author)
+  remove(cedula: string): Observable<any> {
+    return this.http.delete<any>(`${this.myAppUrl}${this.myApiUrl}/${cedula}`)
   }
   findAll(): Observable<any> {
     return this.http.get<any>(`${this.myAppUrl}${this.myApiUrl}/`)
